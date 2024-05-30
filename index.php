@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <title>CiTIM Grupo XB</title>
     <link rel="stylesheet" href="css/stem.css"/>
-
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <script src="js/codigo.js"></script>
 </head>
 <body>
   <section class="wrapper">
     <header>
-      <h1 class="logo"><a href="stem.html">CiTIM</a></h1>
-      
+      <h1 class="logo"><a href="stem.php">CiTIM</a></h1>
     </header>
     <section id="contenedor">
-      <section  class="problema">
+      <section class="problema">
         <h2>Problema: Calcula la energía cinética de un asteroide que tiene un diámetro de 1 km y una
             densidad media de 400 kg m–3 si viaja a una velocidad de 20 km s–1
-            </h2>
+        </h2>
         <p>Descripción:</p>
         <p>Se debe calcular la energía cinética de un asteroide que tiene un diámetro de 1 km y una
           densidad media de 400 kg m–3 si viaja a una velocidad de 20 km s–1. <br>
         </p>
       </section>
-      <section  class="esquemaProblema">
+      <section class="esquemaProblema">
         <h2>Esquema</h2>
         <center>
         <img class="imgProblema" src="images/tipos.JPEG">
@@ -45,24 +42,29 @@
         <h2>Solución</h2>
         <p>a)La energia sinetica de la Tierra es:<br>
         Energia cinetica = 418879020478639100 metros </p>
-        <button onclick="calcula_densidad();">Presiona para calcular</button>
+        <form method="post">
+          <button type="submit" name="calcular">Presiona para calcular</button>
+        </form>
       </section>
-        <?php
-    function calcula_densidad(){ 
-    var radio= 500;
-    var volumen= (4/3)*Math.PI*radio*radio*radio;
-    var densidad= 400; 
-    var masa= volumen * densidad;
-    var velocidad = 2000; 
-    var EC = masa*(1/2)*(velocidad*velocidad); 
-    var d=document.getElementById("resultadoA");
-    d.innerHTML= EC +' metro';
-    }
-    
-?>
+
       <section class="resultado">
         <h2>Resultado:</h2>
-        <div id="resultadoA"></div>
+        <div id="resultadoA">
+          <?php
+          if (isset($_POST['calcular'])) {
+              function calcula_densidad() {
+                  $radio = 500;
+                  $volumen = (4/3) * pi() * pow($radio, 3);
+                  $densidad = 400;
+                  $masa = $volumen * $densidad;
+                  $velocidad = 2000;
+                  $EC = $masa * (1/2) * pow($velocidad, 2);
+                  return $EC . ' metro';
+              }
+              echo calcula_densidad();
+          }
+          ?>
+        </div>
       </section>
     </section>
     <footer class="pie">
